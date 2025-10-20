@@ -1,11 +1,36 @@
 import ctrlWrapper from "../decorators/ctrlWrapper.js";
 import Product from "../models/Product.js";
+import Category from "../models/Category.js";
 
-const getAllProducts = async (req, res) => {
-    const data = await Product.find().populate("category")
-    res.status(200).json(data)
+const getProducts = async (req, res) => {
+    const { title, categorySlug, page = 1, limit = 20 } = req.query;
+
+    const filter = {};
+    const skip = (page - 1) * limit;
+
+    if (title) {
+        filter.title = { $regex: title, $options: "i" };
+    }
+
+    if (categorySlug) {
+        const category = await Category.findOne({ slug: categorySlug });
+        if (category) {
+            filter.category = category._id;
+        } else {
+            return res.status(200).json({ data: [], totalCount: 0 });
+        }
+    }
+
+    const data = await Product.find(filter)
+        .populate("category")
+        .skip(skip)
+        .limit(parseInt(limit));
+
+    const totalCount = await Product.countDocuments(filter);
+
+    res.status(200).json({ data, totalCount });
 }
 
 export default {
-    getAllProducts: ctrlWrapper(getAllProducts),
+    getProducts: ctrlWrapper(getProducts),
 }

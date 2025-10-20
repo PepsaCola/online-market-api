@@ -2,7 +2,7 @@ import ctrlWrapper from "../decorators/ctrlWrapper.js";
 import Category from "../models/Category.js";
 
 const getAllCategories = async (req, res) => {
-    const data = await Category.find()
+    const data = await Category.find().sort({ name: 1 });
     res.status(200).json(data)
 }
 
