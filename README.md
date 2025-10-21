@@ -12,6 +12,10 @@
 
 #### `POST /api/register`
 
+```
+https://online-market-api-eight.vercel.app/api/register
+```
+
 Реєструє нового користувача в системі.
 
 * **Опис:** Створює новий запис користувача в базі даних. Пароль хешується перед збереженням.
@@ -47,6 +51,10 @@
 ---
 
 #### `POST /api/login`
+
+```
+https://online-market-api-eight.vercel.app/api/login
+```
 
 Автентифікує користувача та повертає JWT токен.
 
@@ -87,6 +95,10 @@
 
 #### `GET /api`
 
+```
+https://online-market-api-eight.vercel.app/api
+```
+
 Отримує дані поточного автентифікованого користувача. **Потребує авторизації.**
 
 * **Опис:** Перевіряє JWT токен з заголовка `Authorization` і повертає повну інформацію про користувача, включаючи товари в кошику та збережені товари.
@@ -122,6 +134,10 @@
 ---
 
 #### `GET /api/products`
+
+```
+https://online-market-api-eight.vercel.app/api/products
+```
 
 Отримує список продуктів з можливістю фільтрації та пагінації.
 
@@ -162,6 +178,10 @@
 ---
 
 #### `GET /api/categories`
+
+```
+https://online-market-api-eight.vercel.app/api/categories
+```
 
 Отримує список всіх категорій.
 
