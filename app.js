@@ -5,6 +5,7 @@ import Category from "./models/Category.js";
 import productsRouter from "./routes/productsRouter.js";
 import categoriesRouter from "./routes/categoriesRouter.js";
 import authRouter from "./routes/authRouter.js";
+import reviewsRouter from "./routes/reviewsRouter.js";
 
 const app = express()
 app.use(cors())
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 app.use('/api/products', productsRouter)
 app.use('/api/categories',categoriesRouter)
 app.use('/api',authRouter)
+app.use('/api/reviews',reviewsRouter)
 
 const arr = {
     data:[]

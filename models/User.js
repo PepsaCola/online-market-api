@@ -25,6 +25,12 @@ const userSchema = new mongoose.Schema({
             addedAt: {type:Date, default:Date.now},
         }
     ],
+    reviews:[
+        {
+            type:mongoose.Schema.Types.ObjectId, required: true,
+            ref:"Review"
+        }
+    ]
 
 })
 

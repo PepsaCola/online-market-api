@@ -1,6 +1,7 @@
 import ctrlWrapper from "../decorators/ctrlWrapper.js";
 import Product from "../models/Product.js";
 import Category from "../models/Category.js";
+import "../models/Review.js";
 
 const getProducts = async (req, res) => {
     const { title, categorySlug, page = 1, limit = 20 } = req.query;
@@ -23,6 +24,7 @@ const getProducts = async (req, res) => {
 
     const data = await Product.find(filter)
         .populate("category")
+        .populate("reviews")
         .skip(skip)
         .limit(parseInt(limit));
 

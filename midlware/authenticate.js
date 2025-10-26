@@ -15,8 +15,10 @@ const authenticate = async (req, res, next) => {
     try{
         const {id} = jwt.verify(token, process.env.SECRET_KEY);
         const user = await User.findById(id)
+            .select("-password")
             .populate('bucketProducts.item')
-            .populate('savedProducts.item');
+            .populate('savedProducts.item')
+            .populate("reviews");
 
         if (!user ) {
             return  HttpError(401);

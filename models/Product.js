@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
     slug:{
         type: String,
         required: true,
+        unique: true,
     },
     price:{
         type: Number,
@@ -24,6 +25,10 @@ const productSchema = new mongoose.Schema({
     images:{
         type: [String],
         required: true,
+    },
+    reviews:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:"Review",
     }
 })
 

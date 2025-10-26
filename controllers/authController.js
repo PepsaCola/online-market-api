@@ -21,7 +21,8 @@ const login = async (req, res) => {
     const {email} = req.body;
     const user = await User.findOne({email})
         .populate('bucketProducts.item')
-        .populate('savedProducts.item');
+        .populate('savedProducts.item')
+        .populate("reviews");
     const payload = {id:user._id}
     const token = jwt.sign(payload, process.env.SECRET_KEY,{expiresIn: '2h'})
     res.json({accessToken:token,user})
