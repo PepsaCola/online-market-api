@@ -177,7 +177,10 @@ https://online-market-api-eight.vercel.app/api/products
         "name": "Electronics",
         "slug": "electronics"
       },
-      "images": ["url-to-image1.jpg", "url-to-image2.jpg"]
+      "images": ["url-to-image1.jpg", "url-to-image2.jpg"],
+      "reviews": [
+        //populated review item
+      ]
     }
   ],
   "totalCount": 150
@@ -325,7 +328,7 @@ https://online-market-api-eight.vercel.app/api/reviews/:id
 
 Видаляє існуючий відгук. **Потребує авторизації.**
 
-**Опис:** Дозволяє користувачу видалити власний відгук. Видалити відгук може лише його автор. Також видаляє ID цього відгуку з масиву `reviews` у профілі користувача.
+**Опис:** Дозволяє користувачу видалити власний відгук. Видалити відгук може лише його автор. Також видаляє ID цього відгуку з масиву `reviews` у профілі користувача та з масиву `reviews` у продукті.
 
 **Заголовки (Headers):**
 
