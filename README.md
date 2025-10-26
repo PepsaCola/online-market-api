@@ -123,10 +123,13 @@ Authorization: Bearer your.jwt.token
   "username": "exampleUser",
   "email": "user@example.com",
   "bucketProducts": [
-      // populated product items
+    // populated product items
   ],
   "savedProducts": [
-      // populated product items
+    // populated product items
+  ],
+  "reviews": [
+    //populated review item
   ]
 }
 ```
@@ -222,6 +225,10 @@ https://online-market-api-eight.vercel.app/api/categories
 
 #### `POST /api/reviews`
 
+```
+https://online-market-api-eight.vercel.app/api/reviews
+```
+
 Створює новий відгук до продукту. **Потребує авторизації.**
 
 **Опис:** Створює новий запис відгуку в базі даних, прив'язаний до продукту та поточного користувача. Також додає ID цього відгуку до списку відгуків користувача.
@@ -263,6 +270,10 @@ Authorization: Bearer your.jwt.token
 ---
 
 `PUT /api/reviews/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/reviews/:id
+```
 
 Оновлює існуючий відгук. **Потребує авторизації.**
 
@@ -307,6 +318,10 @@ Authorization: Bearer your.jwt.token
 ---
 
 `DELETE /api/reviews/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/reviews/:id
+```
 
 Видаляє існуючий відгук. **Потребує авторизації.**
 
