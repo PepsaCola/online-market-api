@@ -11,7 +11,9 @@ const postUser = async (req, res) => {
         password:hashedPassword,
         email,
         bucketProducts:[],
-        savedProducts:[]
+        savedProducts:[],
+        ordersHistory:[],
+        reviews:[],
     }
     const result = await User.create(newUser);
     res.status(201).json({result})
@@ -22,7 +24,8 @@ const login = async (req, res) => {
     const user = await User.findOne({email})
         .populate('bucketProducts.item')
         .populate('savedProducts.item')
-        .populate("reviews");
+        .populate("reviews")
+        .populate("ordersHistory")
     const payload = {id:user._id}
     const token = jwt.sign(payload, process.env.SECRET_KEY,{expiresIn: '2h'})
     res.json({accessToken:token,user})

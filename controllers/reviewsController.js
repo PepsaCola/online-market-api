@@ -1,7 +1,6 @@
 import ctrlWrapper from "../decorators/ctrlWrapper.js";
 import Review from "../models/Review.js";
 import HttpError from "../helpers/HttpError.js";
-import Product from "../models/Product.js";
 
 const postReview = async (req, res) => {
     const { product, rate, text } = req.body;

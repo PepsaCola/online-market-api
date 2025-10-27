@@ -18,7 +18,8 @@ const authenticate = async (req, res, next) => {
             .select("-password")
             .populate('bucketProducts.item')
             .populate('savedProducts.item')
-            .populate("reviews");
+            .populate("reviews")
+            .populate('ordersHistory')
 
         if (!user ) {
             return  HttpError(401);

@@ -350,5 +350,288 @@ Authorization: Bearer your.jwt.token
   * `403 Forbidden`: `{"message": "You are not allowed to delete this review"}` Якщо користувач намагається видалити не свій відгук.
   * `404 Not Found`: `{"message": "Review not found"}` Якщо відгук із зазначеним `id` не знайдено.
 
+---
+
+### Кошик
+
+---
+`POST /api/bucket/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/bucket/:id
+```
+
+Додає продукт в кошик. **Потребує авторизації.**
+
+**Опис:** Знаходить товар за `id` та додає його до масиву `bucketProducts` поточного користувача.
+
+**Заголовки (Headers):**
+
+```
+Authorization: Bearer your.jwt.token
+```
+**Параметри URL (URL Params)**
+* `id`: ID товару, який потрібно зберегти
+
+**Успішна відповідь (`200 OK`):** Повертає повідомлення про успіх та оновлений об'єкт відгуку.
+
+```json
+{
+  "message": "Product successfully saved",
+  "item": {
+    "_id": "68ecef877073892497ed962f",
+    "title": "Wooden Puzzle Set",
+    "slug": "wooden-puzzle-set",
+    "price": 19.99,
+    "description": "Eco-friendly wooden puzzle set that boosts creativity and problem-solving skills.",
+    "category": "68ece8f5d83a6f63c6ec0f7c",
+    "images": [
+      "https://i.ibb.co/fkKKcHk/puzzle.jpg"
+    ],
+    "__v": 0,
+    "reviews": []
+  }
+}
+```
+
+**Помилки:**
+* `400 Bad Request`: `{ "message": "Product already in bucket"}` Якщо товар вже є в кошику.
+* `401 Unauthorized`: `{"message": "Not authorized"}` Якщо токен відсутній, недійсний або термін його дії закінчився.
+* `404 Not Found`: `{"message": "Product not found"}` Якщо товар із зазначеним `id` не знайдено.
+
+---
+
+`DELETE /api/bucket/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/bucket/:id
+```
+
+Видаляє товар з кошика. **Потребує авторизації.**
+
+**Опис:** Знаходить товар за `id` та видаляє його з масиву `bucketProducts` користувача.
+
+**Заголовки (Headers):**
+
+```
+Authorization: Bearer your.jwt.token
+```
+
+**Параметри URL (URL Params)**
+* `id`: ID товару, який потрібно видалити
+
+**Успішна відповідь (`200 OK`):** Повертає повідомлення про успіх та видалення об'єкту з кошика.
+  ```json
+  {
+  "message": "Bucket successfully deleted",
+  "item": {
+    "_id": "68ecef877073892497ed962f",
+    "title": "Wooden Puzzle Set",
+    "slug": "wooden-puzzle-set",
+    "price": 19.99,
+    "description": "Eco-friendly wooden puzzle set that boosts creativity and problem-solving skills.",
+    "category": "68ece8f5d83a6f63c6ec0f7c",
+    "images": [
+      "https://i.ibb.co/fkKKcHk/puzzle.jpg"
+    ],
+    "__v": 0,
+    "reviews": []
+  }
+}
+  ```
+**Помилки:**
+* `401 Unauthorized`: `{"message": "Not authorized"}` Якщо токен відсутній, недійсний або термін його дії закінчився.
+* `404 Not Found`: `{"message": "Product not found in bucket"}` Якщо товару немає в кошику.
+
+---
+
+### Збереження
+
+---
+`POST /api/favorite/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/favorite/:id
+```
+
+Додає товар до списку обраних. **Потребує авторизації.**
+
+**Опис:** Додає ID товару до масиву `savedProducts` користувача.
+
+**Заголовки (Headers):**
+
+```
+Authorization: Bearer your.jwt.token
+```
+**Параметри URL (URL Params)**
+* `id`: ID товару
+
+**Успішна відповідь (`200 OK`):** Повертає повідомлення про успіх та оновлений об'єкт відгуку.
+
+```json
+{
+  "message": "Product successfully saved",
+  "itemId": {
+    "_id": "68ecef877073892497ed962f",
+    "title": "Wooden Puzzle Set",
+    "slug": "wooden-puzzle-set",
+    "price": 19.99,
+    "description": "Eco-friendly wooden puzzle set that boosts creativity and problem-solving skills.",
+    "category": "68ece8f5d83a6f63c6ec0f7c",
+    "images": [
+      "https://i.ibb.co/fkKKcHk/puzzle.jpg"
+    ],
+    "__v": 0,
+    "reviews": []
+  }
+}
+```
+
+**Помилки:**
+* `400 Bad Request`: `{ "message": "Product already in favorites"}` Якщо товар вже збережений.
+* `401 Unauthorized`: `{"message": "Not authorized"}` Якщо токен відсутній, недійсний або термін його дії закінчився.
+* `404 Not Found`: `{"message": "Product not found"}` Якщо товар із зазначеним `id` не знайдено.
+
+---
+
+`DELETE /api/favorite/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/favorite/:id
+```
+
+Видаляє товар зі списку обраних. **Потребує авторизації.**
+
+**Опис:** Знаходить товар за `id` та видаляє його з масиву `savedProducts` користувача.
+
+**Заголовки (Headers):**
+
+```
+Authorization: Bearer your.jwt.token
+```
+
+**Параметри URL (URL Params)**
+* `id`: ID товару, який потрібно видалити
+
+**Успішна відповідь (`200 OK`):** Повертає повідомлення про успіх та видалення об'єкту з кошика.
+```json
+{
+  "message": "Favorite successfully deleted",
+  "itemId": {
+    "_id": "68ecef877073892497ed962f",
+    "title": "Wooden Puzzle Set",
+    "slug": "wooden-puzzle-set",
+    "price": 19.99,
+    "description": "Eco-friendly wooden puzzle set that boosts creativity and problem-solving skills.",
+    "category": "68ece8f5d83a6f63c6ec0f7c",
+    "images": [
+      "https://i.ibb.co/fkKKcHk/puzzle.jpg"
+    ],
+    "__v": 0,
+    "reviews": []
+  }
+}
+```
+**Помилки:**
+* `401 Unauthorized`: `{"message": "Not authorized"}` Якщо токен відсутній, недійсний або термін його дії закінчився.
+* `404 Not Found`: `{"message": "Product not found in favorites"}` Якщо товару немає в збережених.
+
+---
+
+### Купівля
+
+---
+`PUT /api/buy/all`
+
+```
+https://online-market-api-eight.vercel.app/api/buy/all
+```
+
+Купує всі товари з кошика. **Потребує авторизації.**
+
+**Опис:** Створює нове замовлення з усіма товарами з кошика, додає його в історію замовлень `ordersHistory` та повністю очищує кошик `bucketProducts`.
+
+**Заголовки (Headers):**
+
+```
+Authorization: Bearer your.jwt.token
+```
+
+**Успішна відповідь (`200 OK`):** Повертає повідомлення про успіх та оновлений об'єкт відгуку.
+
+```json
+{
+  "message": "Order successfully created",
+  "order": {
+    "items": [
+      {
+        "_id": "68ecef877073892497ed962f",
+        "title": "Wooden Puzzle Set",
+        "slug": "wooden-puzzle-set",
+        "price": 19.99,
+        "description": "Eco-friendly wooden puzzle set that boosts creativity and problem-solving skills.",
+        "category": "68ece8f5d83a6f63c6ec0f7c",
+        "images": [
+          "https://i.ibb.co/fkKKcHk/puzzle.jpg"
+        ],
+        "__v": 0,
+        "reviews": []
+      },
+      {
+        "_id": "68ecef877073892497ed9634",
+        "title": "Men’s Denim Jacket",
+        "slug": "mens-denim-jacket",
+        "price": 69,
+        "description": "Classic denim jacket with a modern fit and soft lining for comfort.",
+        "category": "68ece8f5d83a6f63c6ec0f77",
+        "images": [
+          "https://i.ibb.co/mFZk2T2/denim-jacket.jpg"
+        ],
+        "__v": 0,
+        "reviews": []
+      }
+    ],
+    "addedAt": "2025-10-27T09:23:31.320Z"
+  }
+}
+```
+
+**Помилки:**
+* `400 Bad Request`: `{ "message": "Bucket is empty"}` Якщо кошик порожній..
+* `401 Unauthorized`: `{"message": "Not authorized"}` Якщо токен відсутній, недійсний або термін його дії закінчився.
+---
+
+`PUT /api/buy/:id`
+
+```
+https://online-market-api-eight.vercel.app/api/buy/:id
+```
+
+Купує один конкретний товар з кошика. **Потребує авторизації.**
+
+**Опис:** Створює замовлення з одним вказаним товаром, додає його до історії замовлень та видаляє цей товар з кошика.
+
+**Заголовки (Headers):**
+
+```
+Authorization: Bearer your.jwt.token
+```
+
+**Параметри URL (URL Params)**
+* `id`: ID товару
+
+**Успішна відповідь (`200 OK`):** Повертає повідомлення про успіх та видалення об'єкту з кошика.
+```json
+{
+  "message": "Order successfully created",
+  "order": {
+    "items": "68ecef877073892497ed9634",
+    "addedAt": "2025-10-27T09:28:32.010Z"
+  }
+}
+```
+**Помилки:**
+* `401 Unauthorized`: `{"message": "Not authorized"}` Якщо токен відсутній, недійсний або термін його дії закінчився.
+* `404 Not Found`: `{"message": "Product not found in user's bucket"}` Якщо товару з таким `id` немає в кошику.
 
 ---

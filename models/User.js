@@ -25,6 +25,17 @@ const userSchema = new mongoose.Schema({
             addedAt: {type:Date, default:Date.now},
         }
     ],
+    ordersHistory:[
+        {
+            items:[
+                {
+                    type:mongoose.Schema.Types.ObjectId,
+                    ref:"Product"
+                },
+            ],
+            addedAt: {type:Date, default:Date.now}
+        }
+    ],
     reviews:[
         {
             type:mongoose.Schema.Types.ObjectId, required: true,

@@ -2,7 +2,7 @@ import HttpError from "../helpers/HttpError.js";
 import Product from "../models/Product.js";
 
 const checkProductExists = async (req, res, next) => {
-    const productId = req.body.product
+    const productId = (req.body && req.body.product) ? req.body.product : req.params.id;
 
     if (!productId) {
         return next(HttpError(400, "Product ID is required"));
