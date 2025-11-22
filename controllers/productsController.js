@@ -4,8 +4,8 @@ import Category from "../models/Category.js";
 import "../models/Review.js";
 
 const getProducts = async (req, res) => {
-    const { title, categorySlug, page = 1, limit = 20 } = req.query;
-
+    const { title, category:categorySlug, page = 1, limit = 20 } = req.query;
+    console.log(req.query)
     const filter = {};
     const skip = (page - 1) * limit;
 
@@ -21,7 +21,8 @@ const getProducts = async (req, res) => {
             return res.status(200).json({ data: [], totalCount: 0 });
         }
     }
-
+    console.log(filter)
+    console.log(categorySlug)
     const data = await Product.find(filter)
         .populate("category")
         .populate("reviews")
