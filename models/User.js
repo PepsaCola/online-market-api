@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
     bucketProducts:[
         {
             item:{type: mongoose.Schema.Types.ObjectId, required: true, ref: "Product"},
+            quantity:{type: mongoose.Schema.Types.Number, required: true},
             addedAt: {type:Date, default:Date.now}
         }
     ],

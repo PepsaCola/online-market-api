@@ -7,7 +7,7 @@ import checkBucketNotExists from "../midlware/checkBucketNotExists.js";
 
 const bucketRouter = express.Router();
 
-bucketRouter.post('/:id',authenticate,checkProductExists,checkBucketExists,bucketController.postBucket)
-bucketRouter.delete('/:id',authenticate,checkProductExists,checkBucketNotExists,bucketController.deleteBucket)
+bucketRouter.post('/:id',authenticate,checkProductExists,bucketController.postBucket)
+bucketRouter.put('/:id',authenticate,checkProductExists,checkBucketNotExists,bucketController.deleteBucket)
 
 export default bucketRouter;
