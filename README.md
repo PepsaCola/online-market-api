@@ -517,7 +517,7 @@ Authorization: Bearer your.jwt.token
 ```json
 {
   "message": "Favorite successfully deleted",
-  "itemId": {
+  "item": {
     "_id": "68ecef877073892497ed962f",
     "title": "Wooden Puzzle Set",
     "slug": "wooden-puzzle-set",

@@ -12,7 +12,7 @@ const postFavorite = async (req, res) => {
 
     res.status(200).json({
         message: "Product successfully saved",
-        itemId:product
+        item:product
     })
 }
 
@@ -20,14 +20,14 @@ const deleteFavorite = async (req, res) => {
     const {user,product} = req;
 
     user.savedProducts = user.savedProducts.filter(
-        (bp) => bp.item.toString() !== product.toString()
+        (bp) => bp.item._id.toString() !== product._id.toString()
     );
 
     await user.save();
 
     res.status(200).json({
         message: "Favorite successfully deleted",
-        itemId:product
+        itemId:product._id
     })
 }
 

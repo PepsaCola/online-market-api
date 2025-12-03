@@ -32,7 +32,14 @@ const login = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    res.json(req.user);
+    const user = req.user;
+
+    const cleanUser = user.toObject();
+    cleanUser.savedProducts = cleanUser.savedProducts
+        .filter(entry => entry.item)
+        .map(entry => entry.item);
+
+    res.json({ user: cleanUser });
 }
 
 export default {
