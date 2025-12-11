@@ -4,7 +4,6 @@ import User from "../models/User.js";
 
 const authenticate = async (req, res, next) => {
     const { authorization } = req.headers;
-
     if (!authorization) {
         return next(HttpError(401, 'Authorization header is missing'));
     }

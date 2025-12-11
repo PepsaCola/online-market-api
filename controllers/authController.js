@@ -33,13 +33,7 @@ const login = async (req, res) => {
 
 const getUser = async (req, res) => {
     const user = req.user;
-
-    const cleanUser = user.toObject();
-    cleanUser.savedProducts = cleanUser.savedProducts
-        .filter(entry => entry.item)
-        .map(entry => entry.item);
-
-    res.json({ user: cleanUser });
+    res.json({ user });
 }
 
 export default {
